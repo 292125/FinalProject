@@ -10,7 +10,9 @@ using static Controls;
 public class InputReader : ScriptableObject, IPlayerActions
 {
     public event Action<Vector2> MoveEvent;
+    public event Action<bool> JumpEvent;
     private Controls controls;
+    internal bool Jump;
 
     private void OnEnable()
     {
@@ -27,4 +29,16 @@ public class InputReader : ScriptableObject, IPlayerActions
     {
         MoveEvent?.Invoke(context.ReadValue<Vector2>());
     }
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if(context.performed) 
+        {
+            JumpEvent?.Invoke(true);
+        }
+        else if (context.canceled)
+        {
+            JumpEvent?.Invoke(false);
+        }
+    }
+
 }

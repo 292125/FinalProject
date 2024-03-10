@@ -18,19 +18,19 @@ public class PlayerMove : NetworkBehaviour
         if (!IsOwner)
             return;
 
-        
+
         float horizontalInput = Input.GetAxis("Horizontal");
         Vector2 movement = new Vector2(horizontalInput, 0) * moveSpeed;
         rb.MovePosition(rb.position + movement * Time.deltaTime);
 
-        
-        /*if (inputReader.Jump && canJump)
+
+        if (inputReader.Jump && canJump)
         {
             Jump();
-        }*/
+        }
     }
 
-    
+
     void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, 0); 
@@ -38,12 +38,12 @@ public class PlayerMove : NetworkBehaviour
         canJump = false; 
     }
 
-    
-    /*private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             canJump = true; 
         }
-    }*/
+    }
 }
