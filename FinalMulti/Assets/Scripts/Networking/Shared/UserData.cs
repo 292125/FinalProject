@@ -1,9 +1,10 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public class UserData
 {
     public string userName;
     public string userAuthId;
-    public int userColorIndex;
+    public int userSpriteIndex;
 }
