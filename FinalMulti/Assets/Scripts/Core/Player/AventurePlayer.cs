@@ -28,7 +28,7 @@ public class AventurePlayer : NetworkBehaviour
                 HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(OwnerClientId);
             
             PlayerName.Value = userData.userName;
-            //PlayerColorIndex.Value = userData.userColorIndex;
+            PlayerColorIndex.Value = userData.userColorIndex;
             
             OnPlayerSpawned?.Invoke(this);
         }

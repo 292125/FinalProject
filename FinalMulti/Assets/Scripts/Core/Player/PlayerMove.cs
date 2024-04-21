@@ -1,49 +1,81 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
+using UnityEngine.InputSystem;
 
-public class PlayerMove : NetworkBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private InputReader inputReader;
-    [SerializeField] private Transform bodyTransform;
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private float moveSpeed = 5f; 
-    [SerializeField] private float jumpForce = 5f;
+    public Rigidbody2D rb;
+    public Transform groundCheck;
+    public LayerMask groundLayer;
 
-    private bool canJump = true; 
+    private float horizontal;
+    private float speed = 8f;
+    private float jumpingPower = 7f;
+    private bool isFacingRight = true;
+
+    private bool doubleJump;
 
     void Update()
     {
-        if (!IsOwner)
-            return;
-
-
-        float horizontalInput = Input.GetAxis("Horizontal");
-        Vector2 movement = new Vector2(horizontalInput, 0) * moveSpeed;
-        rb.MovePosition(rb.position + movement * Time.deltaTime);
-
-
-        if (inputReader.Jump && canJump)
+        if (!isFacingRight && horizontal > 0f)
         {
-            Jump();
+            Flip();
+        }
+        else if (isFacingRight && horizontal < 0f)
+        {
+            Flip();
+        }
+
+        if (IsGrounded() && !Input.GetButton("Jump"))
+        {
+            doubleJump = false;
+        }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (IsGrounded() || doubleJump)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+
+                doubleJump = !doubleJump;
+            }
+        }
+
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
     }
 
-
-    void Jump()
+    private void FixedUpdate()
     {
-        rb.velocity = new Vector2(rb.velocity.x, 0); 
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); 
-        canJump = false; 
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Jump(InputAction.CallbackContext context)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+
+        if (context.canceled && rb.velocity.y > 0f)
         {
-            canJump = true; 
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+    }
+
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
+    }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        horizontal = context.ReadValue<Vector2>().x;
     }
 }
