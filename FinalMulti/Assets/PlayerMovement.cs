@@ -32,6 +32,7 @@ public class PlayerMovement : NetworkBehaviour
         
         if (IsGrounded() && !Input.GetButton("Jump"))
         {
+            if (!IsOwner) { return; }
             doubleJump = false;
         }
 
@@ -39,14 +40,17 @@ public class PlayerMovement : NetworkBehaviour
         {
             if (IsGrounded() || doubleJump)
             {
+                if (!IsOwner) { return; }
                 rb.velocity = new Vector2(rb.velocity.x, doubleJump ? doubleJumpPower :jumpingPower);
                 
                 doubleJump = !doubleJump;
+                
             }
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
+            if (!IsOwner) { return; }
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             
         }
@@ -56,6 +60,8 @@ public class PlayerMovement : NetworkBehaviour
 
     private void FixedUpdate()
     {
+        if (!IsOwner) { return; }
+        
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 

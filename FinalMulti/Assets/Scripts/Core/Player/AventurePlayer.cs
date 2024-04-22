@@ -16,7 +16,6 @@ public class AventurePlayer : NetworkBehaviour
     [SerializeField] private int OwnerPriority = 15;
 
     public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();
-    public NetworkVariable<int> PlayerColorIndex = new NetworkVariable<int>();
 
     public static event Action<AventurePlayer> OnPlayerSpawned;
     public static event Action<AventurePlayer> OnPlayerDeSpawned;
@@ -28,7 +27,6 @@ public class AventurePlayer : NetworkBehaviour
                 HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(OwnerClientId);
             
             PlayerName.Value = userData.userName;
-            PlayerColorIndex.Value = userData.userColorIndex;
             
             OnPlayerSpawned?.Invoke(this);
         }

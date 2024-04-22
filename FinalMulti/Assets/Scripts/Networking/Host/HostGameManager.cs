@@ -18,7 +18,7 @@ using UnityEngine.SceneManagement;
 public class HostGameManager : IDisposable
 {
    private Allocation allocation;
-   private string joinCode;
+   public string JoinCode { private set; get; }
    private string lobbyId;
 
    public NetworkServer NetworkServer { get; private set; }
@@ -39,8 +39,8 @@ public class HostGameManager : IDisposable
 
         try
         {
-            joinCode = await Relay.Instance.GetJoinCodeAsync(allocation.AllocationId);
-            Debug.Log(joinCode);
+            JoinCode = await Relay.Instance.GetJoinCodeAsync(allocation.AllocationId);
+            Debug.Log(JoinCode);
         }
         catch (Exception e)
         {
@@ -62,7 +62,7 @@ public class HostGameManager : IDisposable
                 {
                     "JoinCode", new DataObject(
                         visibility: DataObject.VisibilityOptions.Member,
-                    value: joinCode
+                    value: JoinCode
                     )
                 }
             };

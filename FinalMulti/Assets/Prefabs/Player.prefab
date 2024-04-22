@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa854c1fe13b0b94f8bd5e0c9f9b5218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 0}
+  virtualCamera: {fileID: 6160640231979143811}
   OwnerPriority: 15
   PlayerName:
     m_InternalValue:
@@ -362,8 +362,6 @@ MonoBehaviour:
         byte0027: 0
         byte0028: 0
         byte0029: 0
-  PlayerColorIndex:
-    m_InternalValue: 0
 --- !u!95 &-4498808337975744571
 Animator:
   serializedVersion: 7
@@ -398,7 +396,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9016838d9fff594880c4b8663aa859c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: -4498808337975744571}
   rb: {fileID: 1019690756994486042}
   groundCheck: {fileID: 4964998799129081370}
   groundLayer:
