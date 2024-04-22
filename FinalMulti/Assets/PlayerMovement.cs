@@ -1,21 +1,35 @@
+using System;
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     private float horizontal;
-    private float speed = 8f;
+    private float speed = 10f;
     private float jumpingPower = 16f;
     private bool isFacingRight = true;
     private bool doubleJump;
     private float doubleJumpPower = 12f;
+    private Animator anim;
 
+    
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
+
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+        anim.SetBool("run", horizontal != 0);
+        anim.SetBool("grounded", IsGrounded());
+        
         if (IsGrounded() && !Input.GetButton("Jump"))
         {
             doubleJump = false;
@@ -26,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
             if (IsGrounded() || doubleJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, doubleJump ? doubleJumpPower :jumpingPower);
-
+                
                 doubleJump = !doubleJump;
             }
         }
@@ -34,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            
         }
 
         Flip();
