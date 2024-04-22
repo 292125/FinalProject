@@ -1430,8 +1430,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1847511905}
   - component: {fileID: 1847511903}
+  - component: {fileID: 1847511906}
   - component: {fileID: 1847511898}
-  - component: {fileID: 1847511897}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Untagged
@@ -1439,27 +1439,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1847511897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847511896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c7006e32c6bda244b0f1a2c8af4ad59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1847511898}
-  playerSprites:
-  - {fileID: 1847511903}
-  AvenColor:
-  - {r: 0.08235294, g: 0.9960785, b: 0, a: 1}
-  - {r: 0.9960785, g: 0, b: 0, a: 1}
-  - {r: 0.9921569, g: 0.4901961, b: 0, a: 1}
-  - {r: 0.04705883, g: 0, b: 0.9921569, a: 1}
-  colorIndex: 0
 --- !u!114 &1847511898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1578,6 +1557,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1118406319}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1847511906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847511896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1788850726
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &2026184935
 GameObject:
   m_ObjectHideFlags: 0
