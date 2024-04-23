@@ -25,14 +25,18 @@ public class AventurePlayer : NetworkBehaviour
         {
             UserData userData =
                 HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(OwnerClientId);
-            
+
             PlayerName.Value = userData.userName;
             
             OnPlayerSpawned?.Invoke(this);
         }
         if (IsOwner)
         {
-            virtualCamera.Priority = OwnerPriority;
+            virtualCamera.Priority = 1;
+        }
+        else
+        {
+            virtualCamera.Priority = 0;
         }
     }
 
