@@ -30,6 +30,13 @@ public class Health : NetworkBehaviour
     {
         ModifyHealth(healValue);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            CurrentHealth.Value -= 5;
+        }
+    }
 
     private void ModifyHealth(int value)
     {
@@ -44,4 +51,6 @@ public class Health : NetworkBehaviour
             isDead = true;
         }
     }
+
+    
 }

@@ -6,7 +6,7 @@ using Unity.Netcode;
 
 public class DealDamage : MonoBehaviour
 {
-    [SerializeField] private int damage = 5;
+    [SerializeField] private int damage = 10;
     
     private ulong ownerClientID;
 

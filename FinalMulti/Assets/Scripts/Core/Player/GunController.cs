@@ -30,19 +30,19 @@ public class GunController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
             Shoot(direction);
 
-        if(mousePos.x < gun.position.x && gunFacingRight)
-        {
-           GunFlip();
-        }
-        else if(mousePos.x > gun.position.x && !gunFacingRight)
-            GunFlip();
+        // if(mousePos.x < gun.position.x && gunFacingRight)
+        // {
+        //    GunFlip();
+        // }
+        // else if(mousePos.x > gun.position.x && !gunFacingRight)
+        //     GunFlip();
     }
 
-    private void GunFlip()
-    {
-        gunFacingRight = !gunFacingRight;
-        gun.localScale = new Vector3(gun.localScale.x, gun.localScale.y * -1, gun.localScale.z);
-    }
+    // private void GunFlip()
+    // {
+    //     gunFacingRight = !gunFacingRight;
+    //     gun.localScale = new Vector3(gun.localScale.x, gun.localScale.y * -1, gun.localScale.z);
+    // }
 
     public void Shoot(Vector3 direction)
     {

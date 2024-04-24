@@ -14,8 +14,13 @@ public class AventurePlayer : NetworkBehaviour
 
     [Header("Setting")] 
     [SerializeField] private int OwnerPriority = 15;
+    
+    [field:SerializeField] public Health Health {  get; private set; }
 
     public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();
+    
+    [Header("Settings")]
+    [SerializeField] private int ownerPriority = 15;
 
     public static event Action<AventurePlayer> OnPlayerSpawned;
     public static event Action<AventurePlayer> OnPlayerDeSpawned;
@@ -32,12 +37,9 @@ public class AventurePlayer : NetworkBehaviour
         }
         if (IsOwner)
         {
-            virtualCamera.Priority = 1;
+            virtualCamera.Priority = ownerPriority;
         }
-        else
-        {
-            virtualCamera.Priority = 0;
-        }
+        
     }
 
     public override void OnNetworkDespawn()
