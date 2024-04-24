@@ -17,6 +17,9 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    public AudioSource Jumpsound;
+    
+
 
     private void Awake()
     {
@@ -49,7 +52,7 @@ public class PlayerMovement : NetworkBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, doubleJump ? doubleJumpPower :jumpingPower);
                 
                 doubleJump = !doubleJump;
-                
+                Jumpsound.PlayOneShot(Jumpsound.clip);
             }
         }
 

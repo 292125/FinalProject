@@ -20,37 +20,23 @@ public class Health : NetworkBehaviour
 
         CurrentHealth.Value = MaxHealth;
     }
-
-    public void TakeDamage(int damageValue)
-    {
-        ModifyHealth(-damageValue);
-    }
-
-    public void RestoreHealth(int healValue)
-    {
-        ModifyHealth(healValue);
-    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isDead) { return; }
         if (collision.gameObject.tag == "Bullet")
         {
             CurrentHealth.Value -= 5;
+            if (CurrentHealth.Value == 0)
+            {
+                OnDie?.Invoke(this);
+                isDead = true;
+            }
         }
+        
     }
 
-    private void ModifyHealth(int value)
-    {
-        if (isDead) { return; }
-
-        int newHealth = CurrentHealth.Value + value;
-        CurrentHealth.Value = Mathf.Clamp(newHealth, 0, MaxHealth);
-
-        if (CurrentHealth.Value == 0)
-        {
-            OnDie?.Invoke(this);
-            isDead = true;
-        }
-    }
+    
 
     
 }

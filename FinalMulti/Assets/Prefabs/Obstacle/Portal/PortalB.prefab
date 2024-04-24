@@ -627,6 +627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 0}
+  teleportSound: {fileID: 0}
 --- !u!58 &4569009371866681473
 CircleCollider2D:
   m_ObjectHideFlags: 0

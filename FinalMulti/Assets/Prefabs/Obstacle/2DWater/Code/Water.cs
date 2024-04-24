@@ -42,6 +42,8 @@ namespace Bundos.WaterSystem
         [HideInInspector]
         Vector2[] uvs;
 
+        public AudioSource water;
+
 
         private void Start()
         {
@@ -220,6 +222,8 @@ namespace Bundos.WaterSystem
 
                 Ripple(contactPoint, false);
             }
+
+            water.PlayOneShot(water.clip);
         }
 
         void OnTriggerExit2D(Collider2D other)
@@ -233,6 +237,8 @@ namespace Bundos.WaterSystem
                 Vector2 contactPoint = other.ClosestPoint(transform.position);
                 Ripple(contactPoint, true);
             }
+
+            //water.PlayOneShot(water.clip);
         }
     }
 }

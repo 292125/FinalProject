@@ -6,7 +6,7 @@ using Unity.Netcode;
 
 public class Bullet : NetworkBehaviour
 {
-    [SerializeField] private Collider2D playerCollider;
+   // [SerializeField] private Collider2D playerCollider;
     private Rigidbody2D rb => GetComponent<Rigidbody2D>();
 
     // Update is called once per frame

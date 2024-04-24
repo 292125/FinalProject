@@ -11,10 +11,6 @@ public class AventurePlayer : NetworkBehaviour
     [Header("References")] 
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     
-
-    [Header("Setting")] 
-    [SerializeField] private int OwnerPriority = 15;
-    
     [field:SerializeField] public Health Health {  get; private set; }
 
     public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();
@@ -26,6 +22,10 @@ public class AventurePlayer : NetworkBehaviour
     public static event Action<AventurePlayer> OnPlayerDeSpawned;
     public override void OnNetworkSpawn()
     {
+        if (IsOwner)
+        {
+            virtualCamera.Priority = ownerPriority;
+        }
         if (IsServer)
         {
             UserData userData =
@@ -35,11 +35,6 @@ public class AventurePlayer : NetworkBehaviour
             
             OnPlayerSpawned?.Invoke(this);
         }
-        if (IsOwner)
-        {
-            virtualCamera.Priority = ownerPriority;
-        }
-        
     }
 
     public override void OnNetworkDespawn()
@@ -49,4 +44,7 @@ public class AventurePlayer : NetworkBehaviour
             OnPlayerDeSpawned?.Invoke(this);
         }
     }
+
+    
+    
 }

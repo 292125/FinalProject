@@ -8,6 +8,8 @@ public class PortalController : MonoBehaviour
     public Transform destination;
     private GameObject player;
 
+    public AudioSource teleportSound;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -21,6 +23,7 @@ public class PortalController : MonoBehaviour
             {
                 player.transform.position = destination.transform.position;
             }
+            teleportSound.PlayOneShot(teleportSound.clip);
         }
     }
 }

@@ -14,6 +14,8 @@ public class GunController : MonoBehaviour
     [Header("Bullet")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed;
+
+    public AudioSource shootingSound;
     
 
     // Update is called once per frame
@@ -52,5 +54,6 @@ public class GunController : MonoBehaviour
         newBullet.GetComponent<Rigidbody2D>().velocity = direction.normalized * bulletSpeed;
 
         Destroy(newBullet, 10);
+        shootingSound.PlayOneShot(shootingSound.clip);
     }
 }

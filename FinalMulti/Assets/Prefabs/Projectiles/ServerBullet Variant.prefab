@@ -8,10 +8,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5910874358806182957, guid: 707eec231ccb6ba42b371d05b929d5c6, type: 3}
-      propertyPath: GlobalObjectIdHash
-      value: 1251542267
-      objectReference: {fileID: 0}
     - target: {fileID: 6821405357805361707, guid: 707eec231ccb6ba42b371d05b929d5c6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -56,29 +52,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: ServerBullet Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8666090724105517470, guid: 707eec231ccb6ba42b371d05b929d5c6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881772452429610914, guid: 707eec231ccb6ba42b371d05b929d5c6, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 918340788
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8881772452429610914, guid: 707eec231ccb6ba42b371d05b929d5c6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7128217119894720436, guid: 707eec231ccb6ba42b371d05b929d5c6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -3839752382794634780}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 707eec231ccb6ba42b371d05b929d5c6, type: 3}
---- !u!1 &2103082090229914959 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7128217119894720436, guid: 707eec231ccb6ba42b371d05b929d5c6, type: 3}
-  m_PrefabInstance: {fileID: 9206243503679279867}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-3839752382794634780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103082090229914959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0f63629c5b45d4b894af003ee90b84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
